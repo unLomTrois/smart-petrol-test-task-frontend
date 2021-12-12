@@ -2,22 +2,12 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Auth from "../../screens/Auth";
+import Auth from "screens/Auth";
+import Books from "screens/Books";
+
 import auth_api from "api/auth";
 
-import { useUser } from "hooks/user";
-
-const Me = () => {
-  const user = useUser();
-
-  return (
-    <div>
-      <h2>me</h2>
-      <p>{user.username}</p>
-      <p>{user.email}</p>
-    </div>
-  );
-};
+import { Me } from "components/Me";
 
 const Main = () => {
   return (
@@ -35,7 +25,7 @@ const App = () => {
     <BrowserRouter>
       <div className="app">
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Books />} />
           <Route path="/me" element={<Me />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>

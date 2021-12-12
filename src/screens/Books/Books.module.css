@@ -1,0 +1,33 @@
+.books__wrapper {
+  z-index: 10000;
+  background: var(--primary-dark);
+  overflow: hidden;
+  /* top: 0;
+  left: 0; */
+  padding: 2rem;
+}
+
+.books__content {
+  border-radius: 16px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.book_item__wrapper {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book_item__author {
+  color: var(--text-muted);
+}
+
+.book_item__description {
+  color: var(--text-muted);
+}
