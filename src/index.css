@@ -41,6 +41,6 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #fff;
+  background-color: var(--text-muted);
   border-radius: 8px;
 }

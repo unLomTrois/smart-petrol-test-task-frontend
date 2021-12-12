@@ -8,5 +8,5 @@
   border-radius: 16px;
   font-size: large;
   padding: 16px;
-  width: 40%;
+  width: calc(360px * 2 + 32px);
 }
