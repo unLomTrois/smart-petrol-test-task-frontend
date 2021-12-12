@@ -33,11 +33,13 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/me" element={<Me />} />
-        <Route path="/auth" element={<Auth />} />
-      </Routes>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/me" element={<Me />} />
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

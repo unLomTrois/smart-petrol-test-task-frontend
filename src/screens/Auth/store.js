@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-// import { validateEmail } from "~/utils/email";
+import { validateEmail } from "utils/email";
 
 import api from "api/auth";
 
@@ -20,21 +20,22 @@ export class AuthStore {
     this.password = s;
   }
 
-  //   get emailCorrect() {
-  //     return validateEmail(this.email);
-  //   }
+  get emailCorrect() {
+    return validateEmail(this.email);
+  }
 
-  //   get canLogIn() {
-  //     return this.emailCorrect && !!this.password;
-  //   }
+  get canLogin() {
+    return this.emailCorrect && !!this.password;
+  }
 
-  async logIn() {
+  async login() {
     try {
       const token = await api.generateToken(this.email, this.password);
       api.setToken(token);
-      window.location = document.referrer;
     } catch (err) {
       this.error = true;
+      return;
     }
+    window.location.pathname = "/";
   }
 }
