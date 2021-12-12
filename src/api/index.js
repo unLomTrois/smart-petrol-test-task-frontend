@@ -9,15 +9,26 @@ export default class Api {
       baseURL: this.url,
     };
 
-    // const interceptor = (config) => {
-    //   const token = localStorage.getItem("token");
-    //   if (token) {
-    //     config.headers.common["Authorization"] = token;
-    //   }
-    //   return config;
-    // };
+    const interceptor = (config) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers.common["Authorization"] = "Bearer " + token;
+      }
+      return config;
+    };
+
+    const errorHandler = (e) => {
+      if (e.response && e.response.status === 401) {
+        window.location.pathname = "/auth";
+        localStorage.removeItem("token");
+        return "Unauthorized";
+      } else {
+        return Promise.reject(e);
+      }
+    };
 
     this.axios = axios.create(options);
-    // this.axios.interceptors.request.use(interceptor, Promise.reject);
+    this.axios.interceptors.request.use(interceptor, Promise.reject);
+    this.axios.interceptors.response.use((res) => res, errorHandler);
   }
 }

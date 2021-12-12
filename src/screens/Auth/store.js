@@ -20,17 +20,21 @@ export class AuthStore {
     this.password = s;
   }
 
-//   get emailCorrect() {
-//     return validateEmail(this.email);
-//   }
+  //   get emailCorrect() {
+  //     return validateEmail(this.email);
+  //   }
 
-//   get canLogIn() {
-//     return this.emailCorrect && !!this.password;
-//   }
+  //   get canLogIn() {
+  //     return this.emailCorrect && !!this.password;
+  //   }
 
   async logIn() {
-    const token = await api.generateToken(this.email, this.password);
-    api.setToken(token);
-    window.location.pathname = "/";
+    try {
+      const token = await api.generateToken(this.email, this.password);
+      api.setToken(token);
+      window.location = document.referrer;
+    } catch (err) {
+      this.error = true;
+    }
   }
 }

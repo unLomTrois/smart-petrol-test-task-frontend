@@ -3,7 +3,8 @@
     "baseUrl": "src",
     "paths": {
       "api": ["api/*"],
-      "screens": ["screens/*"]
+      "screens": ["screens/*"],
+      "components": ["components/*"]
     }
   },
   "include": ["./src/**/*"],

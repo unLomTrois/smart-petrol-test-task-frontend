@@ -29,23 +29,10 @@ class AuthApi extends Api {
   }
 
   async getCurrentUser() {
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + this.getToken(),
-    };
 
-    // const payload = new FormData();
-    // payload.append("username", email);
-    // payload.append("password", password);
+    const resp = await this.axios.get("auth/me")
 
-    try {
-      const resp = await this.axios.get("auth/me", { headers });
-      return resp.data;
-    } catch (e) {
-      console.log("blyaaa");
-      window.location.pathname = "/login";
-      return;
-    }
+    return resp.data;
   }
 }
 
