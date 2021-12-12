@@ -1,0 +1,12 @@
+.wrapper {
+  position: relative;
+  /* padding: 16px; */
+}
+
+.search_bar {
+  border: 0;
+  border-radius: 16px;
+  font-size: large;
+  padding: 16px;
+  width: 40%;
+}

@@ -1,6 +1,7 @@
 import { useBooks } from "hooks/books";
-
 import styles from "./Books.module.css";
+
+import SearchBar from "components/SearchBar";
 
 const SingleBook = ({ title, author, pages }) => {
   return (
@@ -26,6 +27,7 @@ const Books = () => {
 
   return (
     <div className={styles.books__wrapper}>
+      <SearchBar />
       <div className={styles.books__content}>
         {books.map((book, idx) => {
           return <SingleBook key={idx} {...book} />;
