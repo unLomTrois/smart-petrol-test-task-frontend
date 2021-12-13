@@ -1,0 +1,32 @@
+.wrapper {
+  z-index: 10000;
+  width: 100%;
+  background: var(--primary-dark);
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  /* grid-template-rows: auto 1fr; */
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.user_card__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.user_card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  background-color: #fff;
+  border-radius: 16px;
+  min-width: 33%;
+  padding: 2rem;
+}
+
+.user_card__body p {
+  font-size: large;
+  font-weight: 600;
+}

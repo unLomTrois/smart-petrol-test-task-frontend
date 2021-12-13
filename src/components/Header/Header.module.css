@@ -6,7 +6,7 @@
 
 .left_part {
   display: flex;
-  flex-direction: rows;
+  flex-direction: row;
   gap: 32px;
 }
 

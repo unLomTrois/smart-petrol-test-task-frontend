@@ -6,7 +6,7 @@ import Auth from "screens/Auth";
 
 import auth_api from "api/auth";
 
-import { Me } from "components/Me";
+import Me from "screens/Me";
 import Books from "screens/Books";
 
 
