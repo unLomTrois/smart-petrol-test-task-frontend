@@ -9,3 +9,11 @@
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.99));
 }
 
+.link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

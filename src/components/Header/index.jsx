@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <div className={styles.wrapper}>
       <SearchBar />
-      <h1 className={styles.title}>Типа библиотека</h1>
+      <h1 className={styles.title}>
+        <a href="/" className={styles.link}>Типа библиотека</a>
+      </h1>
     </div>
   );
 };
