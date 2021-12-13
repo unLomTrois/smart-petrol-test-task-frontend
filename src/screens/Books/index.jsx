@@ -3,7 +3,7 @@ import styles from "./Books.module.css";
 
 import Header from "components/Header";
 
-const SingleBook = ({ title, author, pages }) => {
+const SingleBook = ({ title, author, description }) => {
   return (
     <div className={styles.book_item__wrapper}>
       <div className={styles.book_item__header}>
@@ -11,14 +11,7 @@ const SingleBook = ({ title, author, pages }) => {
         <p className={styles.book_item__author}>{author}</p>
       </div>
       <div className={styles.book_item__body}>
-        <p className={styles.book_item__description}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
-          mollitia velit dicta deserunt pariatur dolorem enim labore maxime
-          dolor aperiam animi natus temporibus vero a. Consectetur commodi,
-          impedit alias assumenda necessitatibus rerum? Nisi labore culpa
-          quaerat saepe reprehenderit necessitatibus omnis perferendis. Officia
-          dolore nihil nisi aperiam fugit maxime autem veritatis.
-        </p>
+        <p className={styles.book_item__description}>{description}</p>
         {/* <p className={styles.book_item__pages}>{pages}</p> */}
       </div>
     </div>
@@ -36,6 +29,13 @@ const Books = () => {
         {books.map((book, idx) => {
           return <SingleBook key={idx} {...book} />;
         })}
+      </div>
+
+      <div className={styles.bottom}>
+
+      <div className={styles.pagination}>
+        <p>типа пагинация</p>
+      </div>
       </div>
     </div>
   );

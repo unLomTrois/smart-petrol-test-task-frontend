@@ -2,9 +2,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  /* width: 100vw; */
   height: 100vh;
-  background: var(--background-light);
+  background: var(--primary-dark);
   display: flex;
   overflow: overlay;
+  /* overflow-x: hidden; */
 }

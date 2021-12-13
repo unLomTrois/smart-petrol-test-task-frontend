@@ -1,11 +1,10 @@
 .books__wrapper {
   z-index: 10000;
   width: 100%;
-  height: max-content;
-  background: var(--primary-dark);
+  height: 100%;
   /* overflow: hidden; */
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   gap: 2rem;
   padding: 2rem;
 }
@@ -47,4 +46,17 @@
   text-overflow: ellipsis;
   overflow: hidden;
   /* white-space: nowrap; */
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  width: fit-content;
+  align-self: center;
 }
