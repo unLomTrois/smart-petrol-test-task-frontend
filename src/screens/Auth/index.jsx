@@ -9,6 +9,7 @@ const Auth = observer(() => {
 
   return (
     <div className="wrapper">
+      <h1 className="auth__title">Типа библиотека</h1>
       <div className="content">
         <h3 className="title">Вход</h3>
 
