@@ -4,9 +4,14 @@
 }
 
 .search_bar {
-  border: 0;
+  border: none;
+  outline: none;
   border-radius: 16px;
   font-size: large;
   padding: 16px;
   width: calc(360px * 2 + 32px);
+}
+
+.search_bar::placeholder {
+  font-weight: bold;
 }
