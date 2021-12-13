@@ -1,7 +1,9 @@
 .books__wrapper {
   z-index: 10000;
+  width: 100%;
+  height: max-content;
   background: var(--primary-dark);
-  overflow: hidden;
+  /* overflow: hidden; */
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 2rem;
@@ -23,7 +25,7 @@
   height: 300px;
   display: flex;
   flex-direction: column;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,.33));
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.33));
 }
 
 .book_item__author {
@@ -32,4 +34,7 @@
 
 .book_item__description {
   color: var(--text-muted);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* white-space: nowrap; */
 }

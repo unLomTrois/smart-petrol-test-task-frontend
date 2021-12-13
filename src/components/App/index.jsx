@@ -7,7 +7,7 @@ import Auth from "screens/Auth";
 import auth_api from "api/auth";
 
 import { Me } from "components/Me";
-import Main from "components/Main";
+import Books from "screens/Books";
 
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
       <div className="app">
 
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Books />} />
           <Route path="/me" element={<Me />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>

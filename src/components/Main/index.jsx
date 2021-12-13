@@ -4,10 +4,11 @@ import styles from "./Main.module.css"
 
 const Main = () => {
   return (
-    <div className={styles.wrapper}>
-      {/* <SearchBar /> */}
+    // <div className={styles.wrapper}>
+    <>
       <Books />
-    </div>
+    </>
+    // </div>
   );
 };
 
