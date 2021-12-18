@@ -2,13 +2,9 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Auth from "screens/Auth";
-
 import auth_api from "api/auth";
 
-import Me from "screens/Me";
-import Books from "screens/Books";
-
+import { Auth, Books, Me, Admin } from "screens";
 
 const App = () => {
   if (!auth_api.isAuthenticated() && window.location.pathname !== "/auth")
@@ -17,9 +13,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="app">
-
         <Routes>
           <Route path="/" element={<Books />} />
+          <Route path="/admin" element={<Admin />} />
+
           <Route path="/me" element={<Me />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>

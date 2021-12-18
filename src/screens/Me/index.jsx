@@ -8,8 +8,6 @@ import auth_api from "api/auth";
 const Me = () => {
   const user = useUser();
 
-  console.log(user);
-
   return (
     <div className={styles.wrapper}>
       <Header />
