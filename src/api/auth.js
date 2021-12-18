@@ -29,10 +29,19 @@ class AuthApi extends Api {
   }
 
   async getCurrentUser() {
-
-    const resp = await this.axios.get("auth/me")
+    const resp = await this.axios.get("auth/me");
 
     return resp.data;
+  }
+
+  async login(email, password) {
+    const token = await this.generateToken(email, password);
+    this.setToken(token);
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    window.location.pathname = "/auth";
   }
 }
 

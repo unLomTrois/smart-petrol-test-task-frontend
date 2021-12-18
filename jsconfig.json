@@ -3,9 +3,9 @@
     "baseUrl": "src",
     "paths": {
       "api": ["api/*"],
-      "screens": ["screens/*"],
-      "components": ["components/*"],
-      "utils": ["utils/*"]
+      "screens": ["screens/**/*"],
+      "components": ["components/**/*"],
+      "utils": ["utils/**/*"]
     }
   },
   "include": ["./src/**/*"],

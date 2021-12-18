@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { validateEmail } from "utils/email";
 
-import api from "api/auth";
+import auth_api from "api/auth";
 
 export class AuthStore {
   email = "";
@@ -30,8 +30,7 @@ export class AuthStore {
 
   async login() {
     try {
-      const token = await api.generateToken(this.email, this.password);
-      api.setToken(token);
+      await auth_api.login(this.email, this.password);
     } catch (err) {
       this.error = true;
       return;
