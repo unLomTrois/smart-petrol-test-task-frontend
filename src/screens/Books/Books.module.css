@@ -28,8 +28,18 @@
   justify-content: space-between;
 }
 
+.book_item__header__index {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book_item__index {
+  color: var(--text-muted);
+}
+
 .book_item__title {
-  color: var(--primary-dark)
+  color: var(--primary-dark);
 }
 
 .book_item__author {

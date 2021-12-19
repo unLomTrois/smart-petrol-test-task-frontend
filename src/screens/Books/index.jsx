@@ -3,11 +3,14 @@ import styles from "./Books.module.css";
 
 import Header from "components/Header";
 
-const SingleBook = ({ title, author, description }) => {
+const SingleBook = ({ id, title, author, description }) => {
   return (
     <div className={styles.book_item__wrapper}>
       <div className={styles.book_item__header}>
-        <h2 className={styles.book_item__title}>{title}</h2>
+        <div className={styles.book_item__header__index}>
+          <h2 className={styles.book_item__title}>{title}</h2>
+          <h2 className={styles.book_item__index}>#{id}</h2>
+        </div>
         <p className={styles.book_item__author}>{author}</p>
       </div>
       <div className={styles.book_item__body}>
@@ -32,10 +35,9 @@ const Books = () => {
       </div>
 
       <div className={styles.bottom}>
-
-      <div className={styles.pagination}>
-        <p>типа пагинация</p>
-      </div>
+        <div className={styles.pagination}>
+          <p>типа пагинация</p>
+        </div>
       </div>
     </div>
   );
