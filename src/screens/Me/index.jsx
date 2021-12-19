@@ -15,10 +15,10 @@ const Me = () => {
       <div className={styles.user_card__wrapper}>
         <div className={styles.user_card}>
           <h2>Личный кабинет</h2>
-          <p>Вы - {user.role?.name}</p>
+          <p>Вы - {user?.role?.name}</p>
           <div className={styles.user_card__body}>
-            <p>Имя: {user.username}</p>
-            <p>Почта: {user.email}</p>
+            <p>Имя: {user?.username}</p>
+            <p>Почта: {user?.email}</p>
           </div>
 
           <div className={styles.user_card__footer}>

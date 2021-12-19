@@ -1,7 +1,12 @@
 import SearchBar from "components/SearchBar";
+import { useUser } from "hooks/user";
 import styles from "./Header.module.css";
 
-const Header = ({ is_admin = false }) => {
+const Header = () => {
+  const me = useUser();
+
+  const is_admin = me?.role.code === "admin" ?? false;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.left_part}>
@@ -13,7 +18,7 @@ const Header = ({ is_admin = false }) => {
         </h1>
       </div>
 
-      {!is_admin && (
+      {is_admin && (
         <a href="/admin" className={styles.lk}>
           админка
         </a>

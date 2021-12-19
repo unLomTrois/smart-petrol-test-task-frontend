@@ -36,9 +36,20 @@
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.33));
 }
 
+.new_user__wrapper {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: 16px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.33));
+}
+
 .user__left {
   display: grid;
-  grid-template-columns: .2fr 1fr;
+  grid-template-columns: 0.2fr 1fr;
 
   align-items: center;
   gap: 16px;
@@ -78,5 +89,25 @@
 }
 
 .delete_button {
-  background-color: var(--red)
+  background-color: var(--red);
+}
+
+.create_button {
+  background-color: var(--dark-green);
+}
+
+.new_user__input {
+  border: none;
+  outline: none;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.new_user__select__role {
+  border: none;
+  outline: none;
+  font-size: large;
+  font-weight: bolder;
+  color: var(--text-muted);
+  background-color: white;
 }

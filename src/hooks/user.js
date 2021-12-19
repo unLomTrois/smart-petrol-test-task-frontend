@@ -4,7 +4,7 @@ import auth_api from "api/auth";
 import users_api from "api/users";
 
 export const useUser = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
 
   useEffect(() => {
     (async () => setUser(await auth_api.getCurrentUser()))();

@@ -17,13 +17,72 @@ const SingleUser = ({ id, name, email, role }) => {
       <button
         className={styles.delete_button}
         onClick={() => {
-          users_api.deleteUser(id);
-          window.location.reload();
+          users_api.deleteUser(id).then(() => {
+            window.location.reload();
+          });
         }}
       >
         удалить
       </button>
     </div>
+  );
+};
+
+const NewUserForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [role_id, setRoleId] = useState(2);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    users_api
+      .createUser({ name: username, email, password, role_id })
+      .then(() => {
+        window.location.reload();
+      });
+  };
+
+  return (
+    <form>
+      <div className={styles.new_user__wrapper}>
+        <div className={styles.user__left}>
+          <div></div>
+          <input
+            type="text"
+            className={styles.new_user__input}
+            placeholder="введите имя"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <input
+          type="email"
+          className={styles.new_user__input}
+          placeholder="введите email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className={styles.new_user__input}
+          placeholder="введите пароль"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <select
+          className={styles.new_user__select__role}
+          required
+          onChange={(e) => setRoleId(e.target.value)}
+          defaultValue="2"
+        >
+          <option value="2">Клиент</option>
+          <option value="3">Библиотекарь</option>
+        </select>
+
+        <button className={styles.create_button} onClick={handleFormSubmit}>
+          создать
+        </button>
+      </div>
+    </form>
   );
 };
 
@@ -35,6 +94,7 @@ const AdminPage = () => {
       <Header />
 
       <div className={styles.content}>
+        <NewUserForm />
         <h1 className={styles.list_title}>Пользователи</h1>
 
         {users.map((user, idx) => {

@@ -22,6 +22,9 @@ export default class Api {
         window.location.pathname = "/auth";
         localStorage.removeItem("token");
         return "Unauthorized";
+      } else if (e.response && e.response.status === 403) {
+        window.location.pathname = "/";
+        return "Not Permitted";
       } else {
         return Promise.reject(e);
       }

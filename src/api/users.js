@@ -13,6 +13,12 @@ class UsersApi extends Api {
     return resp.data;
   }
 
+  async createUser({name, email, password, role_id}) {
+    const resp = await this.axios.post(`users/add`, {name, email, password, role_id});
+
+    return resp.data;
+  }
+
 }
 
 const users_api = new UsersApi();
