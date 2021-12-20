@@ -100,10 +100,11 @@
 }
 
 .book_view__actions {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto ;
   width: 100%;
   justify-content: space-between;
+  gap: 2rem;
 }
 
 .book_view__actions__main {
@@ -117,7 +118,11 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   justify-self: flex-start;
-  /* width: 80%; */
+  width: 100%;
+}
+
+.action_form {
+  background-color: var(--primary-light)
 }
 
 .book_view__action {

@@ -12,41 +12,42 @@ const IssueForm = ({ book_id, showMessage }) => {
   );
 
   const issueBook = () => {
-    books_api
-      .issueBook(book_id, client_id, end_of_issue)
-      .then((res) => {
-        showMessage(`Сообщите клиенту номер книги: ${res.book_item_id}`);
-      })
-      .catch((res) => {
-        showMessage(res.response.data.detail);
-      });
+    if (client_id && end_of_issue) {
+      books_api
+        .issueBook(book_id, client_id, end_of_issue)
+        .then((res) => {
+          showMessage(`Сообщите клиенту номер книги: ${res.book_item_id}`);
+        })
+        .catch((res) => {
+          showMessage(res.response.data.detail);
+        });
+    }
   };
 
   return (
-    <>
-      <button className={styles.book_view__action} onClick={issueBook}>
+    <div className={styles.book_view__issue_form}>
+      <h3>выдача книг</h3>
+      <input
+        type="number"
+        className={styles.book_view__issue_form__input}
+        placeholder="введите ID клиента"
+        onChange={(e) => setClientID(e.target.value)}
+        value={client_id}
+      />
+      <p>
+        дата завершения:
+        <input
+          type="date"
+          className={styles.book_view__issue_form__input}
+          onChange={(e) => setEndOfIssue(e.target.value)}
+          value={end_of_issue}
+        />
+      </p>
+
+      <button className={styles.form_action} onClick={issueBook}>
         выдать
       </button>
-
-      <div className={styles.book_view__issue_form}>
-        <input
-          type="number"
-          className={styles.book_view__issue_form__input}
-          placeholder="введите ID клиента"
-          onChange={(e) => setClientID(e.target.value)}
-          value={client_id}
-        />
-        <p>
-          дата завершения:
-          <input
-            type="date"
-            className={styles.book_view__issue_form__input}
-            onChange={(e) => setEndOfIssue(e.target.value)}
-            value={end_of_issue}
-          />
-        </p>
-      </div>
-    </>
+    </div>
   );
 };
 
@@ -54,32 +55,32 @@ const EndIssueForm = ({ showMessage }) => {
   const [book_item_id, setBookItemID] = useState("");
 
   const endIssue = () => {
-    books_api
-      .giveABookBack(book_item_id)
-      .then((res) => {
-        showMessage("Книга успешно принята");
-      })
-      .catch(() => {
-        showMessage("технические неполадки");
-      });
+    if (book_item_id) {
+      books_api
+        .giveABookBack(book_item_id)
+        .then((res) => {
+          showMessage("Книга успешно принята");
+        })
+        .catch(() => {
+          showMessage("технические неполадки");
+        });
+    }
   };
 
   return (
-    <>
-      <button className={styles.book_view__action} onClick={endIssue}>
+    <div className={styles.book_view__issue_form}>
+      <h3>приём книг</h3>
+      <input
+        type="number"
+        className={styles.book_view__issue_form__input}
+        placeholder="введите ID книги"
+        onChange={(e) => setBookItemID(e.target.value)}
+        value={book_item_id}
+      />
+      <button className={styles.form_action} onClick={endIssue}>
         принять
       </button>
-
-      <div className={styles.book_view__issue_form}>
-        <input
-          type="number"
-          className={styles.book_view__issue_form__input}
-          placeholder="введите ID книги"
-          onChange={(e) => setBookItemID(e.target.value)}
-          value={book_item_id}
-        />
-      </div>
-    </>
+    </div>
   );
 };
 
@@ -135,14 +136,12 @@ export const BookView = () => {
         </div>
       </div>
       <div className={styles.book_view__actions}>
+        <div className={styles.book_view__actions__buttons}>
+          {me?.role?.code === "client" && (
+            <button className={styles.book_view__action}>забронировать</button>
+          )}
+        </div>
         <div className={styles.book_view__actions__main}>
-          <div className={styles.book_view__actions__buttons}>
-            {me?.role?.code === "client" && (
-              <button className={styles.book_view__action}>
-                забронировать
-              </button>
-            )}
-          </div>
           {me?.role?.code === "librarian" && (
             <>
               <IssueForm book_id={book?.id} showMessage={showMessage} />
