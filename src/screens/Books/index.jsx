@@ -56,11 +56,14 @@ const IssueForm = ({ book_id, showMessage }) => {
   );
 
   const issueBook = () => {
-    books_api.issueBook(book_id, client_id, end_of_issue).then((res) => {
-      showMessage(`Сообщите клиенту номер книги: ${res.book_item_id}`);
-    }).catch((res) => {
-      showMessage(res.response.data.detail);
-    });
+    books_api
+      .issueBook(book_id, client_id, end_of_issue)
+      .then((res) => {
+        showMessage(`Сообщите клиенту номер книги: ${res.book_item_id}`);
+      })
+      .catch((res) => {
+        showMessage(res.response.data.detail);
+      });
   };
 
   return (
@@ -91,15 +94,18 @@ const IssueForm = ({ book_id, showMessage }) => {
   );
 };
 
-const EndIssueForm = ({showMessage}) => {
+const EndIssueForm = ({ showMessage }) => {
   const [book_item_id, setBookItemID] = useState("");
 
   const endIssue = () => {
-    books_api.giveABookBack(book_item_id).then((res) => {
-      showMessage("Книга успешно принята")
-    }).catch(() => {
-      showMessage("технические неполадки")
-    });
+    books_api
+      .giveABookBack(book_item_id)
+      .then((res) => {
+        showMessage("Книга успешно принята");
+      })
+      .catch(() => {
+        showMessage("технические неполадки");
+      });
   };
 
   return (
@@ -135,6 +141,16 @@ const BookView = () => {
     setTimeout(() => {
       setShowMessage(false);
     }, 1000 * 60);
+  };
+
+  const deleteBook = () => {
+    const sure = window.confirm("Are you sure you want to delete this book?");
+
+    if (sure) {
+      books_api.deleteBook(book?.id).then(() => {
+        window.location.href = "/";
+      });
+    }
   };
 
   return (
@@ -173,27 +189,8 @@ const BookView = () => {
           </div>
           {me?.role?.code === "librarian" && (
             <>
-              <IssueForm
-                book_id={book?.id}
-                showMessage={showMessage}
-              />
-              <EndIssueForm
-                showMessage={showMessage}
-              />
-
-              {/* <button className={styles.book_view__action} onClick={() => {}}>
-                принять
-              </button>
-
-              <div className={styles.book_view__issue_form}>
-                <input
-                  type="number"
-                  className={styles.book_view__issue_form__input}
-                  placeholder="введите ID выданной книги"
-                  onChange={(e) => setClientID(e.target.value)}
-                  value={client_id}
-                />
-              </div> */}
+              <IssueForm book_id={book?.id} showMessage={showMessage} />
+              <EndIssueForm showMessage={showMessage} />
             </>
           )}
           {show_message && (
@@ -204,7 +201,15 @@ const BookView = () => {
         </div>
         {me?.role?.code === "librarian" && (
           <div className={styles.book_view__actions__buttons}>
-            <button className={styles.book_view__action}>удалить</button>
+            <button
+              className={styles.book_view__action}
+              onClick={() => {
+                deleteBook();
+              }}
+            >
+              {" "}
+              удалить
+            </button>
           </div>
         )}
       </div>

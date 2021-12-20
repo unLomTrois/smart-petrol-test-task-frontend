@@ -13,6 +13,12 @@ class BooksApi extends Api {
     return resp.data;
   }
 
+  async deleteBook(book_id) {
+    const resp = await this.axios.delete(`books/${book_id}/delete`)
+
+    return resp.data;
+  }
+
   async issueBook(book_id, user_id, end_of_issue) {
     const resp = await this.axios.post("books/issues/", { book_id, user_id, end_of_issue })
 
