@@ -182,7 +182,9 @@ export const BookView = () => {
         <div className={styles.book_view__actions__main}>
           {me?.role?.code === "librarian" && (
             <>
-              <IssueForm book_id={book?.id} showMessage={showMessage} />
+              {book?.count > 0 && (
+                <IssueForm book_id={book?.id} showMessage={showMessage} />
+              )}
               <EndIssueForm showMessage={showMessage} />
               <AddBooksForm book_id={book?.id} showMessage={showMessage} />
             </>
