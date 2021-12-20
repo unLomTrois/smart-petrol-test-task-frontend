@@ -1,6 +1,8 @@
 import SearchBar from "components/SearchBar";
 import { useUser } from "hooks/user";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+
 
 const Header = () => {
   const me = useUser();
@@ -12,21 +14,21 @@ const Header = () => {
       <div className={styles.left_part}>
         <SearchBar />
         <h1 className={styles.title}>
-          <a href="/" className={styles.link}>
+          <Link to="/" className={styles.link}>
             Типа библиотека
-          </a>
+          </Link>
         </h1>
       </div>
 
       {is_admin && (
-        <a href="/admin" className={styles.lk}>
+        <Link to="/admin" className={styles.lk}>
           админка
-        </a>
+        </Link>
       )}
 
-      <a href="/me" className={styles.lk}>
+      <Link to="/me" className={styles.lk}>
         Личный кабинет
-      </a>
+      </Link>
     </div>
   );
 };

@@ -70,3 +70,89 @@
   width: fit-content;
   align-self: center;
 }
+
+.book_view__wrapper {
+  display: grid;
+  grid-template-columns: 0.6fr 1fr 0.6fr;
+  justify-items: center;
+  gap: 2rem;
+}
+
+.book_view__content {
+  background-color: var(--primary-light);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  width: -webkit-fill-available;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.book_view__book__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.book_view__book__pages::before {
+  content: "страниц: ";
+  color: var(--text-muted);
+}
+
+.book_view__actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.book_view__actions__main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.book_view__actions__buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  justify-self: flex-start;
+  /* width: 80%; */
+}
+
+.book_view__action {
+  border-radius: 16px;
+  padding: 10px;
+  background-color: var(--primary-light);
+  color: var(--text-primary);
+}
+
+.book_view__issue_form {
+  background-color: var(--primary-light);
+  padding: 1rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.book_view__issue_form__input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.book_view__issue_form__input::-webkit-outer-spin-button,
+.book_view__issue_form__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.book_view__message {
+  background-color: var(--primary-light);
+  color: var(--text-primary);
+  border-radius: 16px;
+  padding: 16px;
+}

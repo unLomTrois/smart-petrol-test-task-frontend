@@ -6,6 +6,20 @@ class BooksApi extends Api {
 
     return resp.data;
   }
+
+  async getBook(book_id) {
+    const resp = await this.axios.get(`books/${book_id}`)
+
+    return resp.data;
+  }
+
+  async issueBook(book_id, user_id, end_of_issue) {
+    const resp = await this.axios.post("books/issues/", { book_id, user_id, end_of_issue })
+
+    return resp.data;
+  }
+
+
 }
 
 const books_api = new BooksApi();

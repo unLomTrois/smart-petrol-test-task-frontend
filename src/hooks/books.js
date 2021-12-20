@@ -11,3 +11,14 @@ export const useBooks = () => {
 
   return books;
 };
+
+export const useBook = (book_id) => {
+  const [book, setBook] = useState();
+
+  useEffect(() => {
+    (async () => setBook(await books_api.getBook(book_id)))();
+  }, [book_id]);
+
+  return book;
+};
+
