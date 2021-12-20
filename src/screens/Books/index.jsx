@@ -49,27 +49,92 @@ const BookList = () => {
   );
 };
 
-const BookView = () => {
-  const me = useUser();
-  const params = useParams();
-  const book = useBook(params.id);
-
+const IssueForm = ({ book_id, showMessage }) => {
   const [client_id, setClientID] = useState("");
   const [end_of_issue, setEndOfIssue] = useState(
     new Date().toISOString().split("T")[0]
   );
 
-  const [booking_id, setBookingId] = useState("");
-  const [show_message, showMessage] = useState(false);
-
   const issueBook = () => {
-    books_api.issueBook(book.id, client_id, end_of_issue).then((res) => {
-      setBookingId(res.id);
-      showMessage(true);
-      setTimeout(() => {
-        showMessage(false);
-      }, 5000);
+    books_api.issueBook(book_id, client_id, end_of_issue).then((res) => {
+      showMessage(`Сообщите клиенту номер книги: ${res.book_item_id}`);
+    }).catch((res) => {
+      showMessage(res.response.data.detail);
     });
+  };
+
+  return (
+    <>
+      <button className={styles.book_view__action} onClick={issueBook}>
+        выдать
+      </button>
+
+      <div className={styles.book_view__issue_form}>
+        <input
+          type="number"
+          className={styles.book_view__issue_form__input}
+          placeholder="введите ID клиента"
+          onChange={(e) => setClientID(e.target.value)}
+          value={client_id}
+        />
+        <p>
+          дата завершения:
+          <input
+            type="date"
+            className={styles.book_view__issue_form__input}
+            onChange={(e) => setEndOfIssue(e.target.value)}
+            value={end_of_issue}
+          />
+        </p>
+      </div>
+    </>
+  );
+};
+
+const EndIssueForm = ({showMessage}) => {
+  const [book_item_id, setBookItemID] = useState("");
+
+  const endIssue = () => {
+    books_api.giveABookBack(book_item_id).then((res) => {
+      showMessage("Книга успешно принята")
+    }).catch(() => {
+      showMessage("технические неполадки")
+    });
+  };
+
+  return (
+    <>
+      <button className={styles.book_view__action} onClick={endIssue}>
+        принять
+      </button>
+
+      <div className={styles.book_view__issue_form}>
+        <input
+          type="number"
+          className={styles.book_view__issue_form__input}
+          placeholder="введите ID книги"
+          onChange={(e) => setBookItemID(e.target.value)}
+          value={book_item_id}
+        />
+      </div>
+    </>
+  );
+};
+
+const BookView = () => {
+  const me = useUser();
+  const params = useParams();
+  const book = useBook(params.id);
+
+  const [show_message, setShowMessage] = useState(false);
+  const [message_text, setMessageText] = useState("");
+
+  const showMessage = (text) => {
+    setMessageText(text);
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 1000 * 60);
   };
 
   return (
@@ -105,36 +170,35 @@ const BookView = () => {
                 забронировать
               </button>
             )}
-
-            {me?.role?.code === "librarian" && (
-              <button className={styles.book_view__action} onClick={issueBook}>
-                выдать
-              </button>
-            )}
           </div>
           {me?.role?.code === "librarian" && (
-            <div className={styles.book_view__issue_form}>
-              <input
-                type="number"
-                className={styles.book_view__issue_form__input}
-                placeholder="введите ID клиента"
-                onChange={(e) => setClientID(e.target.value)}
-                value={client_id}
+            <>
+              <IssueForm
+                book_id={book?.id}
+                showMessage={showMessage}
               />
-              <p>
-                дата завершения:
+              <EndIssueForm
+                showMessage={showMessage}
+              />
+
+              {/* <button className={styles.book_view__action} onClick={() => {}}>
+                принять
+              </button>
+
+              <div className={styles.book_view__issue_form}>
                 <input
-                  type="date"
+                  type="number"
                   className={styles.book_view__issue_form__input}
-                  onChange={(e) => setEndOfIssue(e.target.value)}
-                  value={end_of_issue}
+                  placeholder="введите ID выданной книги"
+                  onChange={(e) => setClientID(e.target.value)}
+                  value={client_id}
                 />
-              </p>
-            </div>
+              </div> */}
+            </>
           )}
           {show_message && (
             <div className={styles.book_view__message}>
-              Номер выдачи: {booking_id}
+              <p>{message_text}</p>
             </div>
           )}
         </div>

@@ -19,6 +19,12 @@ class BooksApi extends Api {
     return resp.data;
   }
 
+  async giveABookBack(book_item_id) {
+    const resp = await this.axios.delete(`books/issues/${book_item_id}`)
+
+    return resp.data;
+  }
+
 
 }
 
