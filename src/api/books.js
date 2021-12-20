@@ -31,6 +31,15 @@ class BooksApi extends Api {
     return resp.data;
   }
 
+  async addBookItems(book_id, count) {
+    const resp = await this.axios.post(`books/items/`, {
+      parent_book_id: book_id,
+      count
+    })
+
+    return resp.data;
+  }
+
 
 }
 

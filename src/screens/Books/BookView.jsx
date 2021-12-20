@@ -84,6 +84,44 @@ const EndIssueForm = ({ showMessage }) => {
   );
 };
 
+const AddBooksForm = ({ book_id, showMessage }) => {
+  const [count, setCount] = useState("");
+
+  const addBooks = () => {
+    if (count) {
+      books_api
+        .addBookItems(book_id, count)
+        .then((res) => {
+          showMessage(res.message);
+        })
+        .catch(() => {
+          showMessage("технические неполадки");
+        });
+    }
+  };
+
+  return (
+    <div className={styles.book_view__issue_form}>
+      <h3>добавление книг</h3>
+      <input
+        type="number"
+        className={styles.book_view__issue_form__input}
+        placeholder="введите количество книг"
+        onChange={(e) => setCount(e.target.value)}
+        value={count}
+      />
+      <button
+        className={styles.form_action}
+        onClick={() => {
+          addBooks();
+        }}
+      >
+        принять
+      </button>
+    </div>
+  );
+};
+
 export const BookView = () => {
   const me = useUser();
   const params = useParams();
@@ -146,6 +184,7 @@ export const BookView = () => {
             <>
               <IssueForm book_id={book?.id} showMessage={showMessage} />
               <EndIssueForm showMessage={showMessage} />
+              <AddBooksForm book_id={book?.id} showMessage={showMessage} />
             </>
           )}
           {show_message && (
@@ -162,8 +201,7 @@ export const BookView = () => {
                 deleteBook();
               }}
             >
-              {" "}
-              удалить
+              удалить книгу
             </button>
           </div>
         )}
