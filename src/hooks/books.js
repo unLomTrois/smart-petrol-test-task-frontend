@@ -22,3 +22,14 @@ export const useBook = (book_id) => {
   return book;
 };
 
+export const useIsBooked = (book_id, user_id) => {
+  const [is_booked, setBooked] = useState();
+
+  useEffect(() => {
+    (async () => setBooked(await books_api.isAlreadyBooked(book_id, user_id)))();
+  }, [book_id, user_id]);
+
+  console.log(is_booked)
+
+  return is_booked;
+};

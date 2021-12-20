@@ -40,6 +40,23 @@ class BooksApi extends Api {
     return resp.data;
   }
 
+  async bookABook(user_id, book_id, end_of_booking) {
+    const resp = await this.axios.post("books/booking/book", { user_id, book_id, end_of_booking })
+
+    return resp.data;
+  }
+
+  async unBookABook(book_item_id) {
+    const resp = await this.axios.delete("books/booking/unbook/" + book_item_id)
+
+    return resp.data;
+  }
+
+  async isAlreadyBooked(book_id, user_id) {
+    const resp = await this.axios.get(`books/booking/${book_id}/${user_id}`)
+
+    return resp.data;
+  }
 
 }
 
